@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration system PHP and MySQL</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+	
+  <div class="container">
+<?php 
+  session_start(); 
+
+  if (!isset($_SESSION['username'])) {
+  	$_SESSION['msg'] = "You must log in first";
+  	header('location: login.php');
+  }
+  if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['username']);
+  	header("location: login.php");
+  }
+?>
+
+<!-- html code here -->
+
+
+
+
+
+
+    <!-- notification message -->
+    <?php if (isset($_SESSION['success'])) : ?>
+    <div class="error success" >
+      <h3>
+        <?php 
+          echo $_SESSION['success']; 
+          unset($_SESSION['success']);
+        ?>
+      </h3>
+    </div>
+  <?php endif ?>
+
+  
+
+  <!-- logged in user information -->
+  <?php  if (isset($_SESSION['username'])) : ?>
+  <p>Login successfully Welcome <strong><?php echo $_SESSION['username']; ?></strong></p>
+  <div class="button_group" id="login_button">
+  <p> <a href="page2.html" class="btn">go discuss?</a> </p>
+  </div>
+<?php endif ?>
+
+  </>
+  
+
+
+
+
+<script type="text/javascript" src="particles.js"></script>
+<script type="text/javascript" src="app.js"></script> 
+  
+
+
+  </body>
+</html>
